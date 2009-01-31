@@ -103,8 +103,21 @@ switch($action) {
 			$output = 'Truncated table';
 		} else {
 			$output = print_r($database->getErrors(), true);
-		}	
+		}
 		
+		break;	
+	
+	case 'query':
+
+		$sql = 'SELECT * FROM _test WHERE deleted = 0';
+		$result = $database->querySQL($sql);
+		
+		if ($result !== false) {
+			$output = print_r($result, true);
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}		
+
 		break;
 		
   default:
@@ -117,6 +130,7 @@ $arr_menu[] = array('action' => "preparedDelete", 'title' => "Prepared Delete");
 $arr_menu[] = array('action' => "preparedInsert", 'title' => "Prepared Insert");
 $arr_menu[] = array('action' => "preparedSelect", 'title' => "Prepared Select");
 $arr_menu[] = array('action' => "preparedUpdate", 'title' => "Prepared Update");
+$arr_menu[] = array('action' => "query", 'title' => "Query");
 $arr_menu[] = array('action' => "truncateTable", 'title' => "Truncate Table");
 
 $smarty->assign_by_ref('arr_menu', $arr_menu);
