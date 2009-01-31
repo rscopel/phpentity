@@ -12,4 +12,13 @@ CoreDatabase contains basic database functionality.
     * INSERT, UPDATE, SELECT, DELETE
     * allow for single or  multiple queries
     * return values to reflect type of query
-  * relaxed sql processing for non-prepared statements
+  * relaxed SQL processing for non-prepared statements
+
+= Proposed Methods =
+
+== Public Methods ==
+
+  * preparedInsert($sql, $arrData), preparedMultipleInsert($sql, $arrData)
+  * preparedUpdate($sql, $arrData)
+  * preparedDelete($sql, $arrData)
+  * preparedSelect($sql, $arrData)
