@@ -1,5 +1,0 @@
-structure_init.sql
-------------------
-
-- initialize the structure for development
-- wipes out everything
