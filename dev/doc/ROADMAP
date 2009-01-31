@@ -1,0 +1,67 @@
+PROJECT ROADMAP
+------------------------------------------------------
+
+
+Basic Framework (DONE)
+------------------------------------------------------
+
+- folder structure
+- basic core seed class
+- set up local development over-ride
+
+Per-Domain Framework (DONE)
+------------------------------------------------------
+
+- on-the-fly dynamic domain resolution
+- create directory structure
+- set up constants and constants over-ride
+
+Basic Template Framework
+------------------------------------------------------
+
+- per domain framework over-ride
+- DONE create shared admin and public templates
+- DONE create default template for using in tests
+
+Implement Logging (DONE)
+------------------------------------------------------
+
+- multiple levels 
+  - file
+  - firebug
+  - email (warn/crit/emerge) 
+- tests
+
+Database Abstraction (DONE)
+------------------------------------------------------
+
+- MDB2
+
+Core Seed (DONE)
+------------------------------------------------------
+
+- testing
+- 
+
+Core Entity (DONE)
+------------------------------------------------------
+
+- basic database CRUD
+  - based on database structure
+  - first field is ID (integer)
+  - last four fields must be date_created, date_modified, hide, deleted
+
+Core Classification
+------------------------------------------------------
+
+- tagging system
+- add_tag, get_tags, search_by_tag, delete_tag, ...
+
+Other Cores
+------------------------------------------------------
+
+- stats
+- communication
+- data checks (form data -> db conversion)
+- ajax (jquery)
+- YUI
