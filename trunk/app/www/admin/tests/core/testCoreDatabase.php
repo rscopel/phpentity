@@ -17,7 +17,7 @@
 require('../../../../includes/core/main.php');
 
 $smarty_template = 'admin/tests/default.tpl';
-$smarty->assign('dv_page_title', 'Tests: Core Database');
+$smarty->assign('dv_page_title', 'Tests: CoreDatabase');
 $smarty->assign('dv_page', $_SERVER['PHP_SELF']);
 
 /**
@@ -32,19 +32,92 @@ if (isset($_GET["action"])) {
   $action = '';
 }
 
-$database = New CoreDatabase("test_record", $conn, $log);
+$database = New CoreDatabase("testCoreDatabase", $conn, $log);
 
-$output = '';
+$output = '';	// output is between <pre> tags
 
 switch($action) {
 
+	case 'preparedDelete':
+	
+		$sql = 'DELETE FROM _test WHERE deleted = ? AND (id < ?)';
+		$arrData = array(0, 3);
+		$result = $database->preparedDelete($sql, $arrData);
+		
+		if ($result !== false) {
+			$output = 'Delete affected ['.$result.'] records';
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}
+		
+		break;
+
+	case 'preparedInsert':
+	
+		$sql = 'INSERT INTO _test (name, description, date_created) VALUES (?, ?, ?)';
+		$arrData = array('test name', rand(0, 1000), $database->getTimestamp());
+		$result = $database->preparedInsert($sql, $arrData);
+		
+		if ($result !== false) {
+			$output = 'Inserted record with id ['.$result.']';
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}
+		
+		break;
+		
+	case 'preparedSelect':
+		
+		$sql = 'SELECT * FROM _test WHERE deleted = ? AND viewable = ?';
+		$arrData = array(0, 1);
+		$result = $database->preparedSelect($sql, $arrData);
+		
+		if ($result !== false) {
+			$output = print_r($result, true);
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}		
+		
+		break;
+		
+	case 'preparedUpdate':
+		
+		$sql = 'UPDATE _test SET viewable = ? WHERE (id > ? AND id < ?)';
+		$arrData = array(0, 1, 5);
+		$result = $database->preparedUpdate($sql, $arrData);
+		
+		if ($result !== false) {
+			$output = 'Update affected ['.$result.'] records';
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}		
+		
+		break;
+		
+	case 'truncateTable':
+		
+		$sql = 'TRUNCATE _test';
+		$result = $database->executeSQL($sql);
+		
+		if ($result !== false) {
+			$output = 'Truncated table';
+		} else {
+			$output = print_r($database->getErrors(), true);
+		}	
+		
+		break;
+		
   default:
     break;
   
 }
 
 // build menu
-$arr_menu[] = array('action' => "ACTIONHERE", 'title' => "TITLEHERE");
+$arr_menu[] = array('action' => "preparedDelete", 'title' => "Prepared Delete");
+$arr_menu[] = array('action' => "preparedInsert", 'title' => "Prepared Insert");
+$arr_menu[] = array('action' => "preparedSelect", 'title' => "Prepared Select");
+$arr_menu[] = array('action' => "preparedUpdate", 'title' => "Prepared Update");
+$arr_menu[] = array('action' => "truncateTable", 'title' => "Truncate Table");
 
 $smarty->assign_by_ref('arr_menu', $arr_menu);
 $smarty->assign_by_ref('dv_output', $output);
