@@ -224,7 +224,7 @@ class CoreSeed {
    * 
    * @return array
    */
-  public function get_errors() {
+  public function getErrors() {
     
     return $this->_arr_errors;
     
