@@ -188,6 +188,7 @@ class CoreDatabase extends CoreSeed {
   /*
    * NEW CODE BELOW
    * 
+   * @todo error messages (numbers)
    * @todo refactor update and delete to use single method (is same process)
    */
   
@@ -299,6 +300,7 @@ class CoreDatabase extends CoreSeed {
 			} else {
 
 				$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
+				$result->free();
 				$this->log->debug(__METHOD__.': found ['.count($ret).'] record(s)');
 			}
 		}
@@ -340,7 +342,7 @@ class CoreDatabase extends CoreSeed {
 	}
 	
 	/**
-	 * Process SQL
+	 * Execute SQL
 	 * 
 	 * Generic processing
 	 * 
@@ -365,6 +367,34 @@ class CoreDatabase extends CoreSeed {
 		return $ret;
 		
 	}
+	
+	/**
+	 * Query SQL
+	 * 
+	 * Generic processing for queries
+	 * 
+	 * @param string $sql
+	 * @return mixed
+	 */
+	public function &querySQL($sql) {
+		
+		$ret = false;
+		
+    $result =& $this->conn->query($sql);
+    
+		// Always check that result is not an error
+		if (PEAR::isError($result)) {
+			$this->_set_error(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
+		} else {
+			$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
+		}
+
+    $result->free();    
+    
+    return $ret;
+    
+  }  
+		
 	
 }  // end of class
 ?>
