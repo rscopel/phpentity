@@ -23,7 +23,7 @@ require_once 'classCoreSeed.php';
  * 
  * Adds database functionality on top of CoreSeed
  */ 
-class CoreDB extends CoreSeed {
+class CoreDatabase extends CoreSeed {
 
   /**
    * DB Connection

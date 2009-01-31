@@ -1,6 +1,6 @@
 <?php
 /*
- * Tests: Core Database CRUD
+ * Tests: Core Database
  *
  * $LastChangedDate$
  * $LastChangedRevision$
@@ -23,7 +23,7 @@ $smarty->assign('dv_page', $_SERVER['PHP_SELF']);
 /**
  * Core Database Include
  */
-require(DV_APP_ROOT.'includes/core/classes/classCoreDB.php');
+require(DV_APP_ROOT.'includes/core/classes/classCoreDatabase.php');
 
 // grab an action, if any
 if (isset($_GET["action"])) {
@@ -32,7 +32,7 @@ if (isset($_GET["action"])) {
   $action = '';
 }
 
-$database = New CoreDB("test_record", $conn, $log);
+$database = New CoreDatabase("test_record", $conn, $log);
 
 $output = '';
 
