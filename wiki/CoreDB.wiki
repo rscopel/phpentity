@@ -1,0 +1,11 @@
+#summary Core Database Functionality
+#labels Phase-Requirements
+
+= Introduction =
+
+CoreDB contains basic database functionality.
+
+
+= Details =
+
+Currently revamping functionality.
