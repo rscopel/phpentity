@@ -6,6 +6,10 @@
 CoreDB contains basic database functionality.
 
 
-= Details =
+= Requirements =
 
-Currently revamping functionality.
+  * prepared statements (for security) for:
+    * INSERT, UPDATE, SELECT, DELETE
+    * allow for single or  multiple queries
+    * return values to reflect type of query
+  * relaxed sql processing for non-prepared statements
