@@ -12,5 +12,5 @@ The goal is to create a standardized error handling framework that allows for mu
   * namespace errors require range (eg. 100-200)
   * framework will track error usage and ranges must be unique
   * for development usage only; turned off on live deployments
-  * reserved error ranges for core components (CoreSeed, CoreDB) with ability for future growth
+  * reserved error ranges for core components (CoreSeed, CoreDatabase) with ability for future growth
     
