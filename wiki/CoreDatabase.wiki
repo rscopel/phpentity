@@ -25,4 +25,5 @@ CoreDatabase contains basic database functionality.
 
 = Useful Links =
 
+  * [http://pear.php.net/manual/en/package.database.mdb2.intro-execute.php]
   * [http://balancedbraces.com/2008/06/10/prepared-statements-with-pears-mdb2/]
