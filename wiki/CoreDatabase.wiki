@@ -22,3 +22,7 @@ CoreDatabase contains basic database functionality.
   * preparedUpdate($sql, $arrData)
   * preparedDelete($sql, $arrData)
   * preparedSelect($sql, $arrData)
+
+= Useful Links =
+
+  * [http://balancedbraces.com/2008/06/10/prepared-statements-with-pears-mdb2/]
