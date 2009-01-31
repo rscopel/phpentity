@@ -128,6 +128,29 @@ class CoreDatabase extends CoreSeed {
 		return $ret;
 	}
 	
+	/**
+	 * Prepared Multi-Insert
+	 * 
+	 * This method wraps over preparedInsert() and returns an array.  The array
+	 * consists of elements containing either the id of the newly created record
+	 * or FALSE where something failed.
+	 * 
+	 * @param string $sql
+	 * @param array $arrData
+	 * @return array
+	 */
+	public function preparedMultiInsert($sql, $arrData) {
+		
+		$arrReturn = array();
+		
+		foreach ($arrData as $dataKey => $arrInsert) {
+			$arrReturn[$dataKey] = $this->preparedInsert($sql, $arrInsert);
+		}
+		
+		return $arrReturn;
+		
+	}
+	
   /**
    * Prepared Select
    * 

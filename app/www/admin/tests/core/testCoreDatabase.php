@@ -38,10 +38,22 @@ $output = '';	// output is between <pre> tags
 
 switch($action) {
 
+	case 'multiPreparedInsert':
+		
+		$sql = 'INSERT INTO _test (name, description, date_created) VALUES (?, ?, ?)';
+		$arrData['first'] = array('multi-test name', rand(0, 1000), $database->getTimestamp());
+		$arrData[] = array('multi-test name2', rand(0, 1000), $database->getTimestamp());
+		$arrData[] = array('multi-test name3', rand(0, 1000), $database->getTimestamp());
+		$arrResult = $database->preparedMultiInsert($sql, $arrData);
+		
+		$output = print_r($arrResult, true)."\nErrors:\n".print_r($database->getErrors(), true);
+		
+		break;
+		
 	case 'preparedDelete':
 	
-		$sql = 'DELETE FROM _test WHERE deleted = ? AND (id < ?)';
-		$arrData = array(0, 3);
+		$sql = 'DELETE FROM _test WHERE deleted = ? AND (id > ?)';
+		$arrData = array(0, 10);
 		$result = $database->preparedDelete($sql, $arrData);
 		
 		if ($result !== false) {
@@ -131,6 +143,7 @@ $arr_menu[] = array('action' => "preparedInsert", 'title' => "Prepared Insert");
 $arr_menu[] = array('action' => "preparedSelect", 'title' => "Prepared Select");
 $arr_menu[] = array('action' => "preparedUpdate", 'title' => "Prepared Update");
 $arr_menu[] = array('action' => "query", 'title' => "Query");
+$arr_menu[] = array('action' => "multiPreparedInsert", 'title' => "Multi-Prepared Insert");
 $arr_menu[] = array('action' => "truncateTable", 'title' => "Truncate Table");
 
 $smarty->assign_by_ref('arr_menu', $arr_menu);
