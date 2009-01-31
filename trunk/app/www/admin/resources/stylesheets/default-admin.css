@@ -1,0 +1,65 @@
+/*
+
+  Default Stylesheet
+  
+  $LastChangedDate$
+  $LastChangedRevision$
+  $LastChangedBy$
+ 
+  author Dallas Vogels <dvogels@islandlinux.org>  
+
+*/
+
+.clear_left {
+  clear: left;
+}
+
+/*
+  Messages
+*/
+
+div#dv_action_message {
+  width: 100%;
+  text-align: left;
+  color: green;
+  padding-bottom: 20px;
+}
+
+div#dv_error_message {
+  width: 100%;
+  text-align: left;
+  color: red;
+}
+
+div.dv_error_header {
+  color: red;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+/*
+  Customer Edit Form
+*/
+
+div#dv_customer_edit {
+	width: 100%;
+	text-align: left;
+}
+
+#dv_customer_edit .form_title {
+  width: 15%;
+  text-align: right;
+  float: left;
+  padding-right: 10px;
+}
+
+#dv_customer_edit .form_data {
+  width: 60%;
+  float: left;
+}
+
+#dv_customer_edit .form_data .error {
+  color: red;
+  font-size: 10px;
+}
+

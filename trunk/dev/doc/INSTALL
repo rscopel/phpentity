@@ -1,0 +1,5 @@
+This project requires Pear::DB and Pear::Log to be installed.
+
+Ubuntu (7.10 confirmed):
+
+sudo apt-get install php-db php-pear
