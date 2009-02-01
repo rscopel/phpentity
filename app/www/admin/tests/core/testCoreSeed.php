@@ -1,6 +1,6 @@
 <?php
 /*
- * Tests: Core Seed
+ * Tests: CoreSeed
  *
  * $LastChangedDate$
  * $LastChangedRevision$
@@ -16,17 +16,14 @@
  */
 require('../../../../includes/core/main.php');
 
-$smarty_template = 'admin/tests/default.tpl';
-$smarty->assign('dv_page_title', 'Core Seed');
-$smarty->assign('dv_page', $_SERVER['PHP_SELF']);
+$smartyTemplate = 'admin/tests/default.tpl';
+$smarty->assign('dvPageTitle', 'CoreSeed');
+$smarty->assign('dvPage', $_SERVER['PHP_SELF']);
 
 /**
  * Core Seed Include
  */
 require(DV_APP_ROOT.'includes/core/classes/classCoreSeed.php');
-
-// create the core seed object
-$obj_seed = New CoreSeed("test_seed", $conn, $log);
 
 // grab an action, if any
 if (isset($_GET["action"])) {
@@ -39,34 +36,34 @@ $output = "";
 
 switch($action) {
   
-  case 'incorrect_namespace':
-    $obj_seed = New CoreSeed('test seed!', $log);
+  case 'incorrectNamespace':
+    $Seed = New CoreSeed('test seed!', $log);
     $output = "tested [$action]";
     break;
     
-  case 'timer_test':
-    $obj_seed = New CoreSeed('test_timer', $log);
-    $random_wait = rand(1, 20) * 100000;
-    $output = 'Timer test result in seconds: ['.$obj_seed->test_timer($random_wait).'], random wait in seconds ['.($random_wait / 1000000).']';
+  case 'timerTest':
+    $Seed = New CoreSeed('testTimer', $log);
+    $randomWait = rand(1, 20) * 100000;
+    $output = 'Timer test result in seconds: ['.$Seed->testTimer($randomWait).'], random wait in seconds ['.($randomWait / 1000000).']';
     break;  
 
-  case 'error_test':
-    $obj_seed = New CoreSeed('test_error', $log);
-    $obj_seed->test_error('Major Malfunction', 'testing', -1);
-    $obj_seed->test_error('Major Malfunction 2', 'testing', -1);
-    $obj_seed->test_error(basename(__FILE__).' test');
-    $obj_seed->test_error('Major Malfunction 3', '', -1);
-    $output = print_r($obj_seed->get_errors(), TRUE);
+  case 'errorTest':
+    $Seed = New CoreSeed('testError', $log);
+    $Seed->testError('Major Malfunction', 'testing', -1);
+    $Seed->testError('Major Malfunction 2', 'testing', -1);
+    $Seed->testError(basename(__FILE__).' test');
+    $Seed->testError('Major Malfunction 3', '', -1);
+    $output = print_r($Seed->getErrors(), TRUE);
     break;  
   
 }
 
 // build menu
-$arr_menu[] = array('action' => "incorrect_namespace", 'title' => "Incorrect Namespace");
-$arr_menu[] = array('action' => "timer_test", 'title' => "Timer Test");
-$arr_menu[] = array('action' => "error_test", 'title' => "Error Test");
+$arrMenu[] = array('action' => "incorrectNamespace", 'title' => "Incorrect Namespace");
+$arrMenu[] = array('action' => "timerTest", 'title' => "Timer Test");
+$arrMenu[] = array('action' => "errorTest", 'title' => "Error Test");
 
-$smarty->assign_by_ref('arr_menu', $arr_menu);
-$smarty->assign_by_ref('dv_output', $output);
-$smarty->display($smarty_template);
+$smarty->assign_by_ref('arrMenu', $arrMenu);
+$smarty->assign_by_ref('dvOutput', $output);
+$smarty->display($smartyTemplate);
 ?>

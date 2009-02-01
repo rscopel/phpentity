@@ -13,27 +13,28 @@
  * 
  * @author Dallas Vogels <dvogels@islandlinux.org>
  * @copyright (c) 2007-2009 Dallas Vogels
+ * 
  */
 
 /**
  * Core Seed Class
  */ 
 class CoreSeed {
-	
+
+  /**
+   * Timer array
+   */
+  protected $_arrTimer = array();
+    
   /**
    * Error Array
    */
-  protected $_arr_errors = null;
+  protected $_arrErrors = null;
 
   /**
    * Last Error Array
    */
-  protected $_arr_last_error = null; 
-   
-  /**
-   * Timer array
-   */
-  protected $_arr_timer = array();
+  protected $_arrLastError = null;   
   
   /**
    * Name Space
@@ -44,8 +45,8 @@ class CoreSeed {
    * Pear::Log
    */
   protected $log;
-    
-  /**
+  
+	/**
    * Check Integer
    * 
    * Checks passed value and ensures it is an integer.  Returns FALSE if not.
@@ -53,7 +54,7 @@ class CoreSeed {
    * @param mixed $value
    * @return mixed
    */
-  protected function _check_integer($value) {
+  protected function _checkInteger($value) {
     
     // assume bad value; prove it to be good
     $ret = FALSE;
@@ -78,25 +79,25 @@ class CoreSeed {
     
     return $ret;
     
-  }
+  }  
   
   /**
    * Clear Errors
    * 
    * @return void
    */
-  protected function _clear_errors() {
-  	$this->_arr_errors = null;
+  protected function _clearErrors() {
+  	$this->_arrErrors = null;
   	$this->log->debug(__METHOD__.': cleared any previous errors');  	
   }
-  
+
   /**
    * Sanitize String
    * 
    * @param string $string
    * @return string
    */
-  protected function _sanitize_string($string) {
+  protected function _sanitizeString($string) {
     
     $ret = preg_replace("/\W/", "", $string);
     
@@ -106,8 +107,8 @@ class CoreSeed {
     
     return $ret;
     
-  }
-
+  }  
+  
   /**
    * Set Error Message
    * 
@@ -116,39 +117,39 @@ class CoreSeed {
    * @param integer $number default 0
    * @return void
    */
-  protected function _set_error($message, $method, $number = null) {
+  protected function _setError($message, $method, $number = null) {
   
     // express null in text    
     if (is_null($number)) {
-      $err_number = 'null';
+      $number = 'null';
     }
     
-    $arr_error['method'] = $method;
+    $arrError['method'] = $method;
     
-    $arr_error['number'] = $number;
+    $arrError['number'] = $number;
 
-    $arr_error['message'] = $message;
+    $arrError['message'] = $message;
 
-    $this->_arr_errors[] =  $arr_error;
+    $this->_arrErrors[] =  $arrError;
     
-    $this->_arr_last_error = &$this->_arr_errors[count($this->_arr_errors) - 1];
+    $this->_arrLastError = &$this->_arrErrors[count($this->_arrErrors) - 1];
 
     $this->log->err(__METHOD__." method: [$method], number: [$number], message: [$message]");
   
   }
-    
+  
   /**
    * Get Elapsed Time
    * 
    * @param string $id
    * @return float
    */
-  protected function _timer_get($id) {
+  protected function _timerGet($id) {
     
-    if (!isset($this->_arr_timer[$id]['elapsed'] )) {
+    if (!isset($this->_arrTimer[$id]['elapsed'] )) {
       $this->log->warn(__METHOD__.': no time to return (oops)...');
     } else {
-      return $this->_arr_timer[$id]['elapsed'];
+      return $this->_arrTimer[$id]['elapsed'];
     }
 
   }  
@@ -159,39 +160,39 @@ class CoreSeed {
    * @param string $id
    * @return mixed
    */
-  protected function _timer_end($id) {
+  protected function _timerEnd($id) {
     
-    if (!isset($this->_arr_timer[$id]['start'] )) {
+    if (!isset($this->_arrTimer[$id]['start'] )) {
       
       $this->log->warn(__METHOD__.': missing the start value (oops), not tracking...');
       
     } else {
     
       // using microtime and storing as a float
-      $this->_arr_timer[$id]['end'] = microtime(TRUE);
+      $this->_arrTimer[$id]['end'] = microtime(TRUE);
       
       // calculate the difference
-      $this->_arr_timer[$id]['elapsed'] = $this->_arr_timer[$id]['end'] - $this->_arr_timer[$id]['start'];
+      $this->_arrTimer[$id]['elapsed'] = $this->_arrTimer[$id]['end'] - $this->_arrTimer[$id]['start'];
       
       // gain an efficiency
-      return $this->_arr_timer[$id]['elapsed'];
+      return $this->_arrTimer[$id]['elapsed'];
     }
     
-  }  
-  
+  }   
+
   /**
    * Timer Start
    * 
    * @param string $id
    * @return void
    */
-  protected function _timer_start($id) {
+  protected function _timerStart($id) {
     
     // using microtime and storing as a float
-    $this->_arr_timer[$id]['start'] = microtime(TRUE);
+    $this->_arrTimer[$id]['start'] = microtime(TRUE);
     
   }
-   
+  
   /**
    * Constructor
    * 
@@ -207,7 +208,7 @@ class CoreSeed {
     if (!$this->_namespace) {
      
       // ensure the namespace is friendly
-      $namespace = $this->_sanitize_string($namespace);
+      $namespace = $this->_sanitizeString($namespace);
     
       if (! $namespace) {
         die_hard($this->log, __METHOD__.': no namespace');  // STOP 
@@ -226,16 +227,16 @@ class CoreSeed {
    */
   public function getErrors() {
     
-    return $this->_arr_errors;
+    return $this->_arrErrors;
     
-  }
+  }  
   
   /**
    * Get Last Error
    */
-  public function get_last_error() {
+  public function getLastError() {
     
-    return $this->_arr_last_error;
+    return $this->_arrLastError;
     
   }
   
@@ -244,7 +245,7 @@ class CoreSeed {
    * 
    * @return string
    */
-  public function get_namespace() {
+  public function getNamespace() {
     
     return $this->_namespace;
     
@@ -253,14 +254,14 @@ class CoreSeed {
   /**
    * Error Test
    * 
-   * @param string
+   * @param string $errMessage
    * @param string $label default ''
-   * @param integer $err_number default null
+   * @param integer $errNumber default null
    * @return void
    */
-  public function test_error($err_message, $label = '', $err_number = null) {
+  public function testError($errMessage, $label = '', $errNumber = null) {
   
-    $this->_set_error($err_message, $label, $err_number);
+    $this->_setError($errMessage, $label, $errNumber);
     
   }
   
@@ -270,16 +271,16 @@ class CoreSeed {
    * @param integer $timer_wait in microseconds
    * @return float
    */
-  public function test_timer($timer_wait) {
+  public function testTimer($timerWait) {
     
-    $this->log->debug(__METHOD__.': timer wait set at ['.$timer_wait.'] milliseconds ('.($timer_wait / 1000000).') seconds');
+    $this->log->debug(__METHOD__.': timer wait set at ['.$timerWait.'] milliseconds ('.($timerWait / 1000000).') seconds');
     
-    $this->_timer_start('tester');
-    usleep($timer_wait);
-    $this->_timer_end('tester');
+    $this->_timerStart('tester');
+    usleep($timerWait);
+    $this->_timerEnd('tester');
     
-    $this->log->debug(__METHOD__.': Total Time: ['.$this->_timer_get('tester').'] seconds');
-    return $this->_timer_get('tester');
+    $this->log->debug(__METHOD__.': Total Time: ['.$this->_timerGet('tester').'] seconds');
+    return $this->_timerGet('tester');
     
   }  
   

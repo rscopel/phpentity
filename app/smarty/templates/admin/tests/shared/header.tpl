@@ -6,11 +6,11 @@
   $LastChangedBy$
  
   author Dallas Vogels <dvogels@islandlinux.org>
-  copyright 2007 Dallas Vogels
+  copyright (c) 2007-2009 Dallas Vogels
 *}<html>
 
 <head>
-  <title>Test: {$dv_page_title}</title>
+  <title>Test: {$dvPageTitle}</title>
 </head>
 
 <body>

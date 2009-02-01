@@ -16,9 +16,9 @@
  */
 require('../../../../includes/core/main.php');
 
-$smarty_template = 'admin/tests/default.tpl';
-$smarty->assign('dv_page_title', 'Tests: CoreDatabase');
-$smarty->assign('dv_page', $_SERVER['PHP_SELF']);
+$smartyTemplate = 'admin/tests/default.tpl';
+$smarty->assign('dvPageTitle', 'CoreDatabase');
+$smarty->assign('dvPage', $_SERVER['PHP_SELF']);
 
 /**
  * Core Database Include
@@ -138,15 +138,15 @@ switch($action) {
 }
 
 // build menu
-$arr_menu[] = array('action' => "preparedDelete", 'title' => "Prepared Delete");
-$arr_menu[] = array('action' => "preparedInsert", 'title' => "Prepared Insert");
-$arr_menu[] = array('action' => "preparedSelect", 'title' => "Prepared Select");
-$arr_menu[] = array('action' => "preparedUpdate", 'title' => "Prepared Update");
-$arr_menu[] = array('action' => "query", 'title' => "Query");
-$arr_menu[] = array('action' => "multiPreparedInsert", 'title' => "Multi-Prepared Insert");
-$arr_menu[] = array('action' => "truncateTable", 'title' => "Truncate Table");
+$arrMenu[] = array('action' => "preparedDelete", 'title' => "Prepared Delete");
+$arrMenu[] = array('action' => "preparedInsert", 'title' => "Prepared Insert");
+$arrMenu[] = array('action' => "preparedSelect", 'title' => "Prepared Select");
+$arrMenu[] = array('action' => "preparedUpdate", 'title' => "Prepared Update");
+$arrMenu[] = array('action' => "query", 'title' => "Query");
+$arrMenu[] = array('action' => "multiPreparedInsert", 'title' => "Multi-Prepared Insert");
+$arrMenu[] = array('action' => "truncateTable", 'title' => "Truncate Table");
 
-$smarty->assign_by_ref('arr_menu', $arr_menu);
-$smarty->assign_by_ref('dv_output', $output);
-$smarty->display($smarty_template);
+$smarty->assign_by_ref('arrMenu', $arrMenu);
+$smarty->assign_by_ref('dvOutput', $output);
+$smarty->display($smartyTemplate);
 ?>

@@ -76,7 +76,7 @@ class CoreDatabase extends CoreSeed {
 		$preparedStatement = $this->conn->prepare($sql);
 		
 		if (PEAR::isError($preparedStatement)) {
-			$this->_set_error(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
 		} else {
 
 			// just in case array is using name=>value pairs
@@ -85,7 +85,7 @@ class CoreDatabase extends CoreSeed {
 			
 			if (PEAR::isError($dml)) {
 				$this->log->debug(__METHOD__.': data ['.print_r($arrValues, TRUE).']');
-				$this->_set_error(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
+				$this->_setError(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
 			} else {
 				$ret = $this->conn->_affectedRows(null);
 				$this->log->debug(__METHOD__.': updated ['.$ret.'] record(s)');
@@ -110,7 +110,7 @@ class CoreDatabase extends CoreSeed {
 		$preparedStatement = $this->conn->prepare($sql);
 		
 		if (PEAR::isError($preparedStatement)) {
-			$this->_set_error(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
 		} else {
 
 			// just in case array is using name=>value pairs
@@ -119,7 +119,7 @@ class CoreDatabase extends CoreSeed {
 			
 			if (PEAR::isError($dml)) {
 				$this->log->debug(__METHOD__.': data ['.print_r($arrValues, TRUE).']');
-				$this->_set_error(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
+				$this->_setError(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
 			} else {
 				$ret = $this->conn->lastInsertID();
 				$this->log->debug(__METHOD__.': inserted record with id ['.$ret.']');
@@ -167,7 +167,7 @@ class CoreDatabase extends CoreSeed {
 		$preparedStatement = $this->conn->prepare($sql, null, MDB2_PREPARE_RESULT);
 		
 		if (PEAR::isError($preparedStatement)) {
-			$this->_set_error(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
 		} else {
 
 			// just in case array is using name=>value pairs
@@ -176,7 +176,7 @@ class CoreDatabase extends CoreSeed {
 
 			if (PEAR::isError($result)) {
 				$this->log->debug(__METHOD__.': data ['.print_r($arrValues, TRUE).']');
-				$this->_set_error(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
+				$this->_setError(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
 			} else {
 
 				$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
@@ -203,7 +203,7 @@ class CoreDatabase extends CoreSeed {
 		$preparedStatement = $this->conn->prepare($sql);
 		
 		if (PEAR::isError($preparedStatement)) {
-			$this->_set_error(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '', $preparedStatement->getDebugInfo()), __METHOD__, 200);
 		} else {
 
 			// just in case array is using name=>value pairs
@@ -212,7 +212,7 @@ class CoreDatabase extends CoreSeed {
 			
 			if (PEAR::isError($dml)) {
 				$this->log->debug(__METHOD__.': data ['.print_r($arrValues, TRUE).']');
-				$this->_set_error(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
+				$this->_setError(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
 			} else {
 				$ret = $this->conn->_affectedRows(null);
 				$this->log->debug(__METHOD__.': updated ['.$ret.'] record(s)');
@@ -239,7 +239,7 @@ class CoreDatabase extends CoreSeed {
 		
 		// Always check that result is not an error
 		if (PEAR::isError($dml)) {
-			$this->_set_error(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '',$dml->getDebugInfo()), __METHOD__, 200);
 		} else {
 			$ret = true;
 		}
@@ -264,7 +264,7 @@ class CoreDatabase extends CoreSeed {
     
 		// Always check that result is not an error
 		if (PEAR::isError($result)) {
-			$this->_set_error(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
+			$this->_setError(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
 		} else {
 			$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
 		}

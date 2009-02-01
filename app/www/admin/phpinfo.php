@@ -1,15 +1,13 @@
 <?php
 /*
- * Main Index
- * 
- * Main entry point.
+ * phpinfo()
  *
  * $LastChangedDate$
  * $LastChangedRevision$
  * $LastChangedBy$
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
- * @copyright 2008 Dallas Vogels
+ * @copyright (c) 2008-2009 Dallas Vogels
  *
  */
 

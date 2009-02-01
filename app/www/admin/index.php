@@ -9,7 +9,7 @@
  * $LastChangedBy$
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
- * @copyright 2008 Dallas Vogels
+ * @copyright (c) 2008-2009 Dallas Vogels
  *
  */
  
@@ -19,7 +19,7 @@
 require("../../includes/core/main.php");
 
 // init this page for use in template
-$smarty->assign('dv_this_page', $_SERVER['PHP_SELF']);
+$smarty->assign('dvThisPage', $_SERVER['PHP_SELF']);
 
 // init
 $dv_arr_error_message = array();
