@@ -11,8 +11,8 @@
  */
 
 $smartyTemplate = 'admin/_template.tpl';
-$dv_page_title = 'ADMIN TEMPLATE';
-$dv_arr_navigation[] = array('title' => 'Admin _template', 'm' => '_template', 'a' => array());
+$pageTitle = 'ADMIN TEMPLATE';
+$arrNavigation[] = array('title' => 'Admin _template', 'm' => '_template', 'a' => array());
 
 $log->debug(basename(__FILE__).': processing action ['.$arrWebData['a'][0].']');
 
