@@ -17,7 +17,7 @@
 require('../../../../includes/core/main.php');
 
 $smartyTemplate = 'admin/tests/default.tpl';
-$smarty->assign('dvPageTitle', 'CoreSeed->Logging');
+$smarty->assign('pageTitle', 'CoreSeed->Logging');
 $smarty->assign('dvPage', $_SERVER['PHP_SELF']);
 
 // grab an action, if any

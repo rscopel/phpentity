@@ -10,7 +10,7 @@
 *}<html>
 
 <head>
-  <title>Test: {$dvPageTitle}</title>
+  <title>Tests: {$pageTitle}</title>
 </head>
 
 <body>

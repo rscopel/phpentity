@@ -21,10 +21,10 @@ if (DV_LOG_FILE) {
   
   // everyone read/write
   // @todo tighten up but let dev mode have rwx across the board
-  $arr_log_conf = array('mode' => '666');
+  $arrLogConfiguration = array('mode' => '666');
   
-  $log_file = &Log::singleton('file', DV_LOG_FILE_PATH, DV_APP_NAME, $arr_log_conf, DV_LOG_FILE);
-  $log->addChild($log_file);
+  $logFile = &Log::singleton('file', DV_LOG_FILE_PATH, DV_APP_NAME, $arrLogConfiguration, DV_LOG_FILE);
+  $log->addChild($logFile);
   
   $log->debug(basename(__FILE__).': Pear::Log->file initialized with ['.DV_LOG_FILE.']');
   
@@ -33,10 +33,10 @@ if (DV_LOG_FILE) {
 if (DV_LOG_FIREBUG) {
   
   // set buffering to allow header calls
-  $arr_log_conf = array('buffering' => TRUE);
+  $arrLogConfiguration = array('buffering' => TRUE);
   
-  $log_firebug = &Log::singleton('firebug', '', DV_APP_NAME, $arr_log_conf, DV_LOG_FIREBUG);
-  $log->addChild($log_firebug);
+  $logFirebug = &Log::singleton('firebug', '', DV_APP_NAME, $arrLogConfiguration, DV_LOG_FIREBUG);
+  $log->addChild($logFirebug);
   
   $log->debug(basename(__FILE__).': Pear::Log->firebug initialized with ['.DV_LOG_FIREBUG.']');
   
@@ -45,10 +45,10 @@ if (DV_LOG_FIREBUG) {
 if (DV_LOG_EMAIL) {
   
   // email subject
-  $arr_log_conf = array('subject' => 'Important Log Events');  
+  $arrLogConfiguration = array('subject' => 'Important Log Events');  
   
-  $log_email = &Log::singleton('mail', DV_LOG_EMAIL_ADDRESS, DV_APP_NAME, $arr_log_conf, DV_LOG_EMAIL);
-  $log->addChild($log_email);
+  $logEmail = &Log::singleton('mail', DV_LOG_EMAIL_ADDRESS, DV_APP_NAME, $arrLogConfiguration, DV_LOG_EMAIL);
+  $log->addChild($logEmail);
   
   $log->debug(basename(__FILE__).': Pear::Log->email initialized with ['.DV_LOG_EMAIL.'], delivered to ['.DV_LOG_EMAIL_ADDRESS.']');
   

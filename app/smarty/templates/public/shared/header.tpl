@@ -12,7 +12,7 @@
 *}<html>
 
 <head>
-  <title>Public: {$dv_page_title}</title>
+  <title>Public: {$pageTitle}</title>
 </head>
 
 <body>

@@ -18,7 +18,7 @@
  */
 require("../includes/core/main.php");
 
-$smarty->assign('dv_page_title', "TEMPLATE");
+$smarty->assign('pageTitle', "TEMPLATE");
 $smartyTemplate = 'public/template.tpl';
 
 $smarty->display($smartyTemplate);

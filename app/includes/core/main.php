@@ -30,11 +30,11 @@ require 'mainConstants.php';
 require 'mainBasicFunctions.php';
 
 // get the domain name and set the domain include
-$domain_name = dv_get_domain_name();
-$domain_include =  DV_APP_ROOT.'domains/'.$domain_name.'/includes/mainConstants.php';
+$domainName = dvGetDomainName();
+$domainInclude =  DV_APP_ROOT.'domains/'.$domainName.'/includes/mainConstants.php';
 
 // check that main contants for the domain exists, must load per domain settings
-if (file_exists($domain_include)) {
+if (file_exists($domainInclude)) {
   
   /**
    * Pear::Log
@@ -47,23 +47,23 @@ if (file_exists($domain_include)) {
   /**
    * Per domain include
    */
-  require($domain_include);
+  require($domainInclude);
   
 } else {
   
-  die("Could not bootstrap domain [$domain_name]");
+  die("Could not bootstrap domain [$domainName]");
 
 }
 
 // set the session save path
 // @todo cleanup for session save path
-session_save_path(DV_APP_ROOT.'domains/'.$domain_name.'sessions/');
+session_save_path(DV_APP_ROOT.'domains/'.$domainName.'sessions/');
 
 /**
  * Main Logging
  */
 require 'mainLogging.php';
-$log->debug(basename(__FILE__).': bootstrapping complete for domain ['.$domain_name.']');
+$log->debug(basename(__FILE__).': bootstrapping complete for domain ['.$domainName.']');
 
 if (DV_LOCAL_DEV === TRUE) {
 	$log->debug(basename(__FILE__).': USING LOCAL DEVELOPMENT');
@@ -74,7 +74,7 @@ error_reporting(DV_ERROR_REPORTING);
 $log->debug(basename(__FILE__).': setting PHP error level reporting to '.DV_ERROR_REPORTING);
 
 // error check the domain for proper setup
-dv_check_domain_setup($log, DV_APP_ROOT.'domains/'.$domain_name.'/');
+dv_check_domain_setup($log, DV_APP_ROOT.'domains/'.$domainName.'/');
 
 /**
  * Main Smarty

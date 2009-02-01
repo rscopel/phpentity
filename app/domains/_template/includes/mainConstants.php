@@ -52,7 +52,7 @@ define('DV_LOG_FILE', PEAR_LOG_INFO);
  * Log to File Path
  * 
  */
-define('DV_LOG_FILE_PATH', DV_APP_ROOT."domains/$domain_name/logs/pear-log.log");
+define('DV_LOG_FILE_PATH', DV_APP_ROOT."domains/$domainName/logs/pear-log.log");
 
 /**
  * Log to Firebug

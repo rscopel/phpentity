@@ -17,7 +17,7 @@
 require('../../../../includes/core/main.php');
 
 $smartyTemplate = 'admin/tests/default.tpl';
-$smarty->assign('dvPageTitle', 'CoreDatabase');
+$smarty->assign('pageTitle', 'CoreDatabase');
 $smarty->assign('dvPage', $_SERVER['PHP_SELF']);
 
 /**
