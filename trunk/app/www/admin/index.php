@@ -1,8 +1,8 @@
 <?php
 /*
- * Main Index
+ * Administration Index
  * 
- * Main entry point.
+ * Main entry point to the administration area.
  *
  * $LastChangedDate$
  * $LastChangedRevision$
@@ -19,59 +19,59 @@
 require("../../includes/core/main.php");
 
 // init this page for use in template
-$smarty->assign('dvThisPage', $_SERVER['PHP_SELF']);
+$smarty->assign('thisPage', $_SERVER['PHP_SELF']);
 
 // init
-$dv_arr_error_message = array();
-$dv_action_message = '';
-$dv_page_title = 'Main Administration';
+$arrErrorMessage = array();
+$arrAction_Message = '';
+$pageTitle = 'Main Administration';
 
 // init the navigation cookie trail
-$dv_arr_navigation[] = array('title' => 'Main Menu', 'm' => '', 'a' => array());
+$arrNavigation[] = array('title' => 'Main Menu', 'm' => '', 'a' => array());
 
 // init the primary action if not set
-if (!isset($arr_data['a'][0])) {
-  $arr_data['a'][0] = '';
+if (!isset($arrWebData['a'][0])) {
+  $arrWebData['a'][0] = '';
 }
 
 // init the module if necessary
-if (!isset($arr_data['m'])) {
-  $arr_data['m'] = '';
+if (!isset($arrWebData['m'])) {
+  $arrWebData['m'] = '';
 }
 
-$log->debug(basename(__FILE__).': processing module: ['.$arr_data['m'].'], primary action: ['.$arr_data['a'][0].']');
+$log->debug(basename(__FILE__).': processing module: ['.$arrWebData['m'].'], primary action: ['.$arrWebData['a'][0].']');
 
-if ($dv_module) {
+if ($dvModule) {
 
-  $smarty->assign('dv_module', $dv_module);
+  $smarty->assign('dvModule', $dvModule);
 
   // @todo build better process to deal with multiple modules
-  $dv_module = 'testing/modules/admin/'.$dv_module;
+  $dvModule = 'testing/modules/admin/'.$dvModule;
 
-  $dv_required_file = dv_get_require_file(DV_APP_ROOT, $dv_module); 
+  $requiredFile = dvGetRequiredFile(DV_APP_ROOT, $dvModule); 
 
-  if ($dv_required_file === FALSE) {
-    die_hard($log, basename(__FILE__).': could not find module ['.$dv_module.']');
+  if ($requiredFile === FALSE) {
+    die_hard($log, basename(__FILE__).': could not find module ['.$dvModule.']');
   } else {
     
-    require_once $dv_required_file;
+    require_once $requiredFile;
     
   }
     
 } else {
   
   // defaults
-  $smarty_template = 'admin/index.tpl';
+  $smartyTemplate = 'admin/index.tpl';
   
 }
 
 // no caching on admin side
 $smarty->caching = FALSE;
-$smarty->assign_by_ref('dv_action_message', $dv_action_message);
-$smarty->assign_by_ref('dv_arr_error_message', $dv_arr_error_message);
-$smarty->assign('dv_error_message_count', count($dv_arr_error_message));
-$smarty->assign_by_ref('dv_page_title', $dv_page_title);
-$smarty->assign_by_ref('dv_arr_navigation', $dv_arr_navigation);
-$smarty->display($smarty_template);
+$smarty->assign_by_ref('actionMessage', $actionMessage);
+$smarty->assign_by_ref('arrErrorMessage', $arrErrorMessage);
+$smarty->assign('errorMessageCount', count($arrErrorMessage));
+$smarty->assign_by_ref('pageTitle', $pageTitle);
+$smarty->assign_by_ref('arrNavigation', $arrNavigation);
+$smarty->display($smartyTemplate);
 
 ?>

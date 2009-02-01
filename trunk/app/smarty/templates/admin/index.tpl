@@ -13,7 +13,7 @@
 
 <div>
   <ul>
-    <li><a href="{$dvThisPage}?m=_template">Test _template Module</a></li>
+    <li><a href="{$thisPage}?m=_template">Test _template Module</a></li>
   </ul>
 </div>
 
