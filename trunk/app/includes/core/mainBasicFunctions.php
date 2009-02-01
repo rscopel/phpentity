@@ -42,7 +42,7 @@ function die_hard(&$log, $message) {
  * @todo cache lookups for better performance, maybe a text file with timestamp
  * 
  * @param object &$log
- * @param string $domain_name
+ * @param string $domainName
  * @return TRUE (or nothing at all)
  */
 function dv_check_domain_setup(&$log, $domain_root) {
@@ -190,16 +190,16 @@ function dv_add_nav_item($arr_navigation, $title, $module, $action) {
  * 
  * @return string
  */
-function dv_get_domain_name() {
+function dvGetDomainName() {
   
   // check for local development
   if (DV_LOCAL_DEV) {
-    $domain_name = "_template";
+    $domainName = "_template";
   } else {
-    $domain_name = $_SERVER['SERVER_NAME'];
+    $domainName = $_SERVER['SERVER_NAME'];
   }
   
-  return $domain_name;
+  return $domainName;
   
 }
 

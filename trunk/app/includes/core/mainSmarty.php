@@ -29,7 +29,7 @@ $smarty->template_dir = DV_APP_ROOT.'smarty/templates/';
 $smarty->plugins_dir = array(DV_APP_ROOT.'smarty/plugins/', DV_SMARTY_ROOT.'plugins/');
 
 // set paths for per-domain settings
-$smarty_root = DV_APP_ROOT."domains/$domain_name/smarty/";
+$smarty_root = DV_APP_ROOT."domains/$domainName/smarty/";
 $smarty->cache_dir = $smarty_root.'cache/';
 $smarty->compile_dir = $smarty_root.'compile/';
 

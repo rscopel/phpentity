@@ -23,9 +23,9 @@ if (isset($arrWebData['m'])) {
 
 // evaluate for sub-actions such as a2, a3, a4, ect.
 $counter = '';
-$arr_subactions = array();
+$arrSubactions = array();
 while (isset($arrWebData['a'.$counter])) {
-  $arr_subactions[] = $arrWebData['a'.$counter];
+  $arrSubactions[] = $arrWebData['a'.$counter];
   if (!$counter) {
     $counter++;
   } else {
