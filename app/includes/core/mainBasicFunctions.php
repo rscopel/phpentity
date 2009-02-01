@@ -210,7 +210,7 @@ function dv_get_domain_name() {
  * @param string $module
  * @return mixed
  */
-function dv_get_require_file($root_path, $module) {
+function dvGetRequiredFile($root_path, $module) {
   
   // @todo refactor one day
   global $log;

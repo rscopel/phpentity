@@ -7,7 +7,7 @@
   $LastChangedBy$
  
   author Dallas Vogels <dvogels@islandlinux.org>
-  copyright (c) 2007-2008 Dallas Vogels
+  copyright (c) 2007-2009 Dallas Vogels
 
 *}
 </body>
