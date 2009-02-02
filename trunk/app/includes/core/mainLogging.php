@@ -46,6 +46,13 @@ if (DV_LOG_EMAIL) {
   
   // email subject
   $arrLogConfiguration = array('subject' => 'Important Log Events');  
+
+  // email configuration
+  $arrLogConfiguration = array(
+		'subject' => 'Log Events: ['.DV_APP_NAME.']',
+		'from' => DV_COMPANY_NAME.' <'.DV_LOG_EMAIL_ADDRESS.'>',
+		'preamble' => 'Something worthy of attention has occurred:'
+		);  
   
   $logEmail = &Log::singleton('mail', DV_LOG_EMAIL_ADDRESS, DV_APP_NAME, $arrLogConfiguration, DV_LOG_EMAIL);
   $log->addChild($logEmail);
