@@ -44,9 +44,6 @@ if (DV_LOG_FIREBUG) {
 
 if (DV_LOG_EMAIL) {
   
-  // email subject
-  $arrLogConfiguration = array('subject' => 'Important Log Events');  
-
   // email configuration
   $arrLogConfiguration = array(
 		'subject' => 'Log Events: ['.DV_APP_NAME.']',
