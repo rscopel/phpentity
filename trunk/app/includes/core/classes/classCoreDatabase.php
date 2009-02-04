@@ -178,7 +178,6 @@ class CoreDatabase extends CoreSeed {
 				$this->log->debug(__METHOD__.': data ['.print_r($arrValues, TRUE).']');
 				$this->_setError(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
 			} else {
-
 				$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
 				$result->free();
 				$this->log->debug(__METHOD__.': found ['.count($ret).'] record(s)');
@@ -267,10 +266,9 @@ class CoreDatabase extends CoreSeed {
 			$this->_setError(preg_replace("/\n/", '',$result->getDebugInfo()), __METHOD__, 200);
 		} else {
 			$ret =& $result->fetchAll(MDB2_FETCHMODE_ASSOC);
+			$result->free();    
 		}
-
-    $result->free();    
-    
+		
     return $ret;
     
   }
