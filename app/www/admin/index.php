@@ -21,6 +21,10 @@ require("../../includes/core/main.php");
 // init this page for use in template
 $smarty->assign('thisPage', $_SERVER['PHP_SELF']);
 
+// for debugging
+$thisFile = dvGetFile(__FILE__);
+$log->debug($thisFile.': accessing');
+
 // init
 $arrErrorMessage = array();
 $arrAction_Message = '';
@@ -39,7 +43,7 @@ if (!isset($arrWebData['m'])) {
   $arrWebData['m'] = '';
 }
 
-$log->debug(basename(__FILE__).': processing module: ['.$arrWebData['m'].'], primary action: ['.$arrWebData['a'][0].']');
+$log->debug($thisFile.': processing module: ['.$arrWebData['m'].'], primary action: ['.$arrWebData['a'][0].']');
 
 if ($dvModule) {
 
@@ -64,6 +68,8 @@ if ($dvModule) {
   $smartyTemplate = 'admin/index.tpl';
   
 }
+
+$log->debug($thisFile.': using template ['.$smartyTemplate.']');
 
 // no caching on admin side
 $smarty->caching = FALSE;

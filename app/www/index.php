@@ -18,8 +18,14 @@
  */
 require("../includes/core/main.php");
 
+// for debugging
+$thisFile = dvGetFile(__FILE__);
+$log->debug($thisFile.': accessing');
+
 $smarty->assign('pageTitle', "TEMPLATE");
 $smartyTemplate = 'public/template.tpl';
+
+$log->debug($thisFile.': using template ['.$smartyTemplate.']');
 
 $smarty->display($smartyTemplate);
  

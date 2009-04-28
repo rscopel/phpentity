@@ -204,6 +204,73 @@ function dvGetDomainName() {
 }
 
 /**
+ * Determine File Path Chunk
+ * 
+ * Takes the output of __FILE__ and produces a string containing all directories
+ * from the specified rootDir to the script name.
+ * 
+ * So a __FILE__ path of /really/long/and/hard/to/read/path/www/index.php can be
+ * resolved to 'www/index.php' by calling:
+ * 
+ * $scriptPath = getFile(__FILE__);
+ * 
+ * Set the debugLevel to use Pear::Log.  Note the script assumes that there is
+ * an object called $log that has already been initialized as a Pear::Log
+ * object.  Setting to 1 displays a message then the function is called, setting
+ * to 2 displays more detailed information.  Set to zero, false, empty, or null
+ * to disable the logging.
+ * 
+ * @param string $file
+ * @param string $rootDir default 'www'
+ * @param integer $debugLevel defalut 0
+ * @return string
+ */
+function dvGetFile($file, $rootDir = 'www', $debugLevel = 0) {
+	
+	if (!empty($debugLevel)) {
+		global $log;	// using Pear::Log
+		$log->debug(__FUNCTION__.': using file ['.$file.']');
+	}
+	
+	$arrDir = array();	// init array for determining the file path chunk
+	$breaker = 10;	// max iterations allowed; for stopping infinite loops
+	
+	$scriptName = basename($file);	// init the scriptName (eg. index.php)
+	$dirName = dirname($file);	// init the dirname
+	
+	$counter = 0; // count aray elements; keep it tidy - not really needed
+	while (!isset($arrDir[$rootDir])) {
+		
+		$key = basename($dirName);	// grab the dirName 
+		$arrDir[$key] = $counter;	// add to the tracking array 
+		$dirName = dirname($dirName);	// grab the last chunk of the path
+		
+		if ($debugLevel == 2) {	// internal debugging
+			$log->debug(__FUNCTION__.': iteration ['.$counter.'] gives key ['.$key.']');
+		}
+		
+		$counter++;	// on to track the next array element
+		
+		// check for breaker, if loop goes on and on the breaker will kick in
+		if ($counter == $breaker) {
+			if ($debugLevel == 2) {
+				$log->warning(__FUNCTION__.': reached limit of ['.$limit.']');
+			}
+			break;
+		}
+		
+	}
+	
+	$arrDir = array_reverse($arrDir);
+	$arrDir = array_flip($arrDir);
+	
+	$ret = implode('/', $arrDir).'/'.$scriptName;
+	
+	return $ret;
+	
+}
+
+/**
  * Get Specified File Path
  * 
  * @param string $root_path
